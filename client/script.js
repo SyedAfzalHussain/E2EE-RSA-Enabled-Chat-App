@@ -32,7 +32,7 @@ document.getElementById("joinRoomBtn").addEventListener("click", () => {
   });
 });
 
-if (!localStorage.getItem("publicKey") && !localStorage.getItem("privateKey")) {
+if (!localStorage.getItem("publicKey") || !localStorage.getItem("privateKey")) {
   generateKeyPair().then((kp) => {
     keyPair = kp;
     exportKey(kp.publicKey, "spki");
@@ -45,7 +45,7 @@ function exportKey(key, format) {
     const exportedKeyBase64 = btoa(
       String.fromCharCode(...new Uint8Array(rawKeyData))
     );
-    if (localStorage.getItem("publicKey") == null) {
+    if (localStorage.getItem("publicKey") == null || localStorage.getItem("privateKey") == null)  {
       if (format === "spki") {
         localStorage.setItem("publicKey", exportedKeyBase64);
       } else if (format === "pkcs8") {
@@ -130,12 +130,6 @@ socketClient.on("chat-message-server", (encryptedData) => {
   console.log("encryptedData from serverrr is : " + encryptedData);
   decryptData(encryptedData);
 });
-
-socketClient.on("typing", (msg) => {
-  console.log("Received typing event:", msg);
-  document.getElementById("typing").textContent = msg;
-});
-
 
 document.getElementById("sendMessageBtn").addEventListener("click", () => {
   if (document.getElementById("messageInput").value == "") return;
