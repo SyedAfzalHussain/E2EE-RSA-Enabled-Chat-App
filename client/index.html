@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Socket.IO Client Example</title>
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .mainBody {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .messageBody {
+      overflow-y: auto;
+      height: 400px;
+    }
+
+    .chatContainer {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sent,
+    .received {
+      display: flex;
+      margin-bottom: 4px;
+      flex-direction: column;
+    }
+
+    #sent {
+      background-color: #f0f4c3;
+      padding: 10px;
+      border-radius: 10px;
+      color: #6b726b;
+      margin: 1%;
+    }
+
+    #received {
+      background-color: #d1ecf1;
+      padding: 10px;
+      border-radius: 10px;
+      color: #424242;
+      margin: 1%;
+    }
+
+    .inputContainer {
+      display: flex;
+      margin-top: 20px;
+    }
+
+    input[type="text"] {
+      flex-grow: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="mainBody">
+    <h1>Socket.IO Client Example</h1>
+    <div class="messageBody" id="messageBody">
+      <div class="chatContainer" id="chatContainer">
+        <div class="sent message" id="sent">This is a sent message</div>
+        <div class="received message" id="received">This is a received message</div>
+      </div>
+    </div>
+    <div class="inputContainer">
+      <input type="text" id="messageInput">
+      <button id="sendMessageBtn">Send Msg</button>
+      <button id="joinRoomBtn">Join Room</button>
+    </div>
+  </div>
+</body>
+<script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+<script defer src="./script.js"></script>
+
+</html>
